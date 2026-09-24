@@ -1,0 +1,11 @@
+{
+  "name": "deputy-2-0",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deputy 2.0 — Deputy Scale & Deputy Interactive Scale. Static HTML/CSS/JS, deployed to Vercel.",
+  "scripts": {
+    "dev": "node scripts/serve-static.mjs",
+    "start": "node scripts/serve-static.mjs",
+    "build": "node scripts/build-static.mjs"
+  }
+}

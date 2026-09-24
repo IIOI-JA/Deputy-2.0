@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#FAFAFA" />
+<title>Deputy 2.0: Two Product Levels</title>
+<meta name="description" content="Deputy Scale & Deputy Interactive Scale — same platform, same therapeutic origin, two fundamentally different ways to work." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Deputy 2.0: Two Product Levels" />
+<meta property="og:description" content="Deputy Scale & Deputy Interactive Scale — one platform, two ways to work." />
+<meta property="og:site_name" content="Deputy" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" href="assets/deputy-mark.svg" type="image/svg+xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---- Deputy 2.0 additions: accent-filled cards + hero graphic ---- */
+  .card.is-accent{ background:var(--c-accent); border:none; }
+  .card.is-accent .card-key{ color:#1F332F; }
+  .card.is-accent h3, .card.is-accent .card-title{ color:#1F332F; }
+  .card.is-accent p{ color:#2E4A45; }
+
+  .pricing-wrap{ display:flex; gap:28px; flex-wrap:wrap; margin-top:8px; }
+  .pricing-card{ flex:1 1 380px; border-radius:14px; padding:30px 32px; background:var(--c-paper); border:1px solid var(--c-hairline); box-shadow:0 10px 30px rgba(20,30,28,.05); }
+  .pricing-card.is-upgrade{ background:var(--c-accent); border:none; box-shadow:0 16px 40px rgba(20,30,28,.12); transform:translateY(-6px); }
+  .pricing-card .pc-label{ font-family:var(--font-eyebrow); font-size:12.5px; font-weight:700; letter-spacing:.15em; color:var(--c-muted); text-transform:uppercase; }
+  .pricing-card.is-upgrade .pc-label{ color:#1F332F; }
+  .pricing-row{ display:flex; flex-direction:column; padding:13px 0; border-bottom:1px solid var(--c-hairline); }
+  .pricing-card.is-upgrade .pricing-row{ border-bottom-color:rgba(255,255,255,.28); }
+  .pricing-row:last-child{ border-bottom:none; }
+  .pricing-row .pr-key{ font-size:11px; font-weight:600; letter-spacing:.02em; color:var(--c-faint); margin-bottom:3px; }
+  .pricing-card.is-upgrade .pricing-row .pr-key{ color:rgba(31,51,47,.62); }
+  .pricing-row .pr-val{ font-size:16px; color:var(--c-ink); }
+  .pricing-card.is-upgrade .pricing-row .pr-val{ color:#1F332F; font-weight:600; }
+
+  .hero-graphic{ position:relative; width:340px; height:340px; flex:0 0 auto; }
+  .hero-graphic svg{ width:100%; height:100%; overflow:visible; }
+  .hg-line{ stroke:var(--c-hairline); stroke-width:1.5; fill:none; stroke-dasharray:6 420; stroke-dashoffset:0; animation:hgDraw 2.6s ease-out forwards; }
+  .hg-line.d2{ animation-delay:.15s; }
+  .hg-line.d3{ animation-delay:.3s; }
+  .hg-line.d4{ animation-delay:.45s; }
+  @keyframes hgDraw{ from{ stroke-dasharray:6 420; } to{ stroke-dasharray:420 420; } }
+  .hg-dot{ opacity:0; transform-origin:center; animation:hgPop .55s cubic-bezier(.2,1.4,.4,1) forwards; }
+  .hg-dot.d1{ animation-delay:.35s; }
+  .hg-dot.d2{ animation-delay:.6s; }
+  .hg-dot.d3{ animation-delay:.85s; }
+  .hg-dot.d4{ animation-delay:1.1s; }
+  .hg-dot.d5{ animation-delay:1.35s; }
+  .hg-dot.d6{ animation-delay:1.6s; }
+  @keyframes hgPop{ 0%{ opacity:0; transform:scale(0); } 70%{ transform:scale(1.18); } 100%{ opacity:1; transform:scale(1); } }
+  @media (max-width:900px){ .hero-graphic{ width:220px; height:220px; } }
+  @media (prefers-reduced-motion: reduce){
+    .hg-line{ animation:none !important; stroke-dasharray:none !important; }
+    .hg-dot{ animation:none !important; opacity:1 !important; transform:scale(1) !important; }
+  }
+
+  /* ---- numbered list ---- */
+  .num-list{ margin-top:28px; max-width:920px; }
+  .num-item{ display:flex; align-items:center; gap:18px; padding:14px 0; border-bottom:1px solid var(--c-hairline); }
+  .num-item:last-child{ border-bottom:none; }
+  .num-badge{ flex:0 0 auto; width:34px; height:34px; border-radius:50%; background:var(--c-accent-soft,#EAF0EF); color:var(--c-accent-deep); display:flex; align-items:center; justify-content:center; font-family:var(--font-eyebrow); font-weight:700; font-size:14px; }
+  .num-item span.txt{ font-size:16.5px; color:var(--c-ink); }
+
+  /* ---- x-cards (no infrastructure) ---- */
+  .x-cards{ display:flex; gap:20px; flex-wrap:wrap; margin-top:24px; max-width:1000px; }
+  .x-card{ flex:1 1 260px; background:var(--c-paper); border:1px solid var(--c-hairline); border-radius:12px; padding:26px 24px; }
+  .x-mark{ width:38px; height:38px; border-radius:50%; background:#F3E4E0; color:#B45B4A; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:17px; margin-bottom:16px; }
+  .x-card p{ font-size:14.5px; color:var(--c-ink); line-height:1.4; margin:0; }
+
+  /* ---- flow row (arrows between boxes) ---- */
+  .flow-row{ display:flex; align-items:center; gap:0; margin-top:30px; flex-wrap:wrap; }
+  .flow-box{ flex:1 1 180px; min-width:150px; background:var(--c-paper); border:1px solid var(--c-hairline); border-radius:12px; padding:26px 18px; text-align:center; font-weight:700; font-size:16px; color:var(--c-ink); }
+  .flow-box.is-accent{ background:var(--c-accent); border:none; color:#1F332F; }
+  .flow-arrow{ flex:0 0 auto; width:44px; display:flex; align-items:center; justify-content:center; color:var(--c-accent); font-size:22px; }
+  @media (max-width:760px){ .flow-row{ flex-direction:column; } .flow-arrow{ transform:rotate(90deg); } }
+
+  /* ---- definition cards (4-col boundaries) ---- */
+  .def-cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:22px; max-width:1100px; }
+  .def-card{ background:var(--c-paper); border:1px solid var(--c-hairline); border-radius:12px; padding:22px 20px; }
+  .def-card h4{ font-size:15px; font-weight:700; margin:0 0 10px; color:var(--c-ink); }
+  .def-card p{ font-size:12.5px; color:var(--c-muted); line-height:1.4; margin:0; }
+  @media (max-width:900px){ .def-cards{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .def-cards{ grid-template-columns:1fr; } }
+</style>
+
+<script src="main.js" defer></script>
+<script src="viz.js" defer></script>
+</head>
+<body class="is-loading" data-lang="en">
+
+<header class="shell-top">
+  <a class="brand" href="https://deputy.dk" aria-label="Deputy">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 1696.03 1978.91" fill="none" stroke="currentColor" stroke-width="112" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="73.47 1249.02 73.47 37.5 262.99 37.5"/>
+        <path d="M77.66,1593.47l497.2,2.38c440.18,0,700.73-244.59,700.73-615.26,0-328.77-189.26-594.13-700.73-594.13"/>
+        <path d="M413.29,1249.02l3-1211.52h158.57c564.7,0,1047.7,316.25,1047.7,935.63s-477.43,968.28-1047.7,968.28l-497.2-1.12v-343.92"/>
+      </svg>
+    </span>
+    <span class="brand-text">Deputy <span style="color:var(--c-accent-deep); font-weight:600;">2.0</span></span>
+  </a>
+
+  <nav class="slide-nav" aria-label="Slide progress">
+    <button class="dot" data-go="0" aria-label="Slide 1"></button>
+    <button class="dot" data-go="1" aria-label="Slide 2"></button>
+    <button class="dot" data-go="2" aria-label="Slide 3"></button>
+    <button class="dot" data-go="3" aria-label="Slide 4"></button>
+    <button class="dot" data-go="4" aria-label="Slide 5"></button>
+    <button class="dot" data-go="5" aria-label="Slide 6"></button>
+    <button class="dot" data-go="6" aria-label="Slide 7"></button>
+    <button class="dot" data-go="7" aria-label="Slide 8"></button>
+    <button class="dot" data-go="8" aria-label="Slide 9"></button>
+    <button class="dot" data-go="9" aria-label="Slide 10"></button>
+    <button class="dot" data-go="10" aria-label="Slide 11"></button>
+    <button class="dot" data-go="11" aria-label="Slide 12"></button>
+    <button class="dot" data-go="12" aria-label="Slide 13"></button>
+    <button class="dot" data-go="13" aria-label="Slide 14"></button>
+    <button class="dot" data-go="14" aria-label="Slide 15"></button>
+    <button class="dot" data-go="15" aria-label="Slide 16"></button>
+    <button class="dot" data-go="16" aria-label="Slide 17"></button>
+    <button class="dot" data-go="17" aria-label="Slide 18"></button>
+    <button class="dot" data-go="18" aria-label="Slide 19"></button>
+    <button class="dot" data-go="19" aria-label="Slide 20"></button>
+  </nav>
+
+  <div class="shell-tools"></div>
+</header>
+
+<aside class="counter" aria-hidden="true">
+  <span class="ctr-num">01</span><span class="ctr-sep"></span><span class="ctr-tot">20</span>
+</aside>
+<aside class="hint" aria-hidden="true">scroll · arrows</aside>
+
+<main class="deck">
+
+  <!-- 1 · OPENING -->
+  <section class="slide" data-slide="0" data-label="Opening" style="background:linear-gradient(180deg,var(--c-bg-2),var(--c-bg));">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:60px; flex-wrap:wrap; max-width:1200px;">
+      <div style="flex:1 1 420px;">
+        <span class="kicker reveal reveal-d1">DEPUTY</span>
+        <h1 class="display reveal reveal-d2" style="margin-top:14px; font-size:clamp(34px,4.6vw,58px);">One platform.<br/>Two ways to work.</h1>
+      </div>
+      <div class="hero-graphic reveal reveal-d2" aria-hidden="true">
+        <svg viewBox="0 0 340 340">
+          <path class="hg-line d1" d="M60 260 L130 190 L100 100 L220 70 L260 160 L190 250 Z"/>
+          <path class="hg-line d2" d="M130 190 L220 70"/>
+          <path class="hg-line d3" d="M100 100 L190 250"/>
+          <circle class="hg-dot d1" cx="60" cy="260" r="9" fill="#D9DDDB"/>
+          <circle class="hg-dot d2" cx="130" cy="190" r="7" fill="var(--c-accent)"/>
+          <circle class="hg-dot d3" cx="100" cy="100" r="11" fill="var(--c-accent)"/>
+          <circle class="hg-dot d4" cx="220" cy="70" r="6" fill="#D9DDDB"/>
+          <circle class="hg-dot d5" cx="260" cy="160" r="10" fill="var(--c-accent)"/>
+          <circle class="hg-dot d6" cx="190" cy="250" r="8" fill="#D9DDDB"/>
+          <g><circle cx="60" cy="260" r="9" fill="var(--c-accent)" opacity="0"><animate attributeName="opacity" values="0;0;.5;0" dur="3.2s" repeatCount="indefinite" begin="2.4s"/><animate attributeName="r" values="9;9;20;9" dur="3.2s" repeatCount="indefinite" begin="2.4s"/></circle></g>
+          <g><circle cx="100" cy="100" r="11" fill="var(--c-accent)" opacity="0"><animate attributeName="opacity" values="0;0;.5;0" dur="3.2s" repeatCount="indefinite" begin="2.9s"/><animate attributeName="r" values="11;11;24;11" dur="3.2s" repeatCount="indefinite" begin="2.9s"/></circle></g>
+          <g><circle cx="260" cy="160" r="10" fill="var(--c-accent)" opacity="0"><animate attributeName="opacity" values="0;0;.5;0" dur="3.2s" repeatCount="indefinite" begin="3.4s"/><animate attributeName="r" values="10;10;22;10" dur="3.2s" repeatCount="indefinite" begin="3.4s"/></circle></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · OVERVIEW -->
+  <section class="slide" data-slide="1" data-label="Overview" style="background:var(--c-bg);">
+    <div class="wrap wide">
+      <span class="kicker reveal reveal-d1">Overview</span>
+      <h2 class="display small reveal reveal-d2">One platform, two depths of engagement</h2>
+      <p class="body reveal reveal-d3" style="max-width:64ch; margin-top:16px;">Deputy is offered in two clearly distinct product levels. Both use the same platform and the same therapeutic origin — but they differ fundamentally in how they are used. Neither level requires the psychologist to compromise on their method, their language, or their clinical judgement. The choice is not about which is better, but about how much presence a given moment calls for. Many practices will use both, depending on the client and the phase of treatment.</p>
+
+      <div class="cards cols-2" style="margin-top:28px; max-width:1000px;">
+        <article class="card reveal reveal-d4">
+          <span class="card-key">A</span>
+          <h3 style="margin:6px 0 10px; font-size:18px; font-weight:700;">Deputy Scale</h3>
+          <p>One-way delivery. The psychologist's protocol, professionally produced and made available as audio.</p>
+        </article>
+        <article class="card is-accent reveal reveal-d5">
+          <span class="card-key">B</span>
+          <h3 style="margin:6px 0 10px; font-size:18px; font-weight:700;">Deputy Interactive Scale</h3>
+          <p>Two-way engagement. Deputy responds within your boundaries and accompanies the client between sessions.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · TITLE -->
+  <section class="slide" data-slide="2" data-label="Title" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Two Product Levels</span>
+      <h1 class="display reveal reveal-d2" style="margin-top:12px;">Deputy Scale &amp; Deputy<br/>Interactive Scale</h1>
+      <p class="lede reveal reveal-d3" style="margin-top:20px;">Same platform. Same therapeutic origin. Two fundamentally different ways to work.</p>
+      <p class="body reveal reveal-d4" style="max-width:66ch; margin-top:18px;">Deputy Scale keeps the psychologist's proven method exactly as it is, delivered through a single, well-produced channel. Deputy Interactive Scale takes that same method and lets it respond, within limits the psychologist sets in advance. Together, they describe not two products, but two depths of the same therapeutic relationship.</p>
+    </div>
+  </section>
+
+  <!-- 4 · SECTION DIVIDER A -->
+  <section class="slide" data-slide="3" data-label="Section A" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <div class="reveal reveal-d1" style="font-family:var(--font-display); font-weight:700; font-size:clamp(80px,11vw,150px); color:var(--c-accent); line-height:1;">A</div>
+      <h2 class="display reveal reveal-d2" style="margin-top:8px; font-size:clamp(30px,4vw,44px);">Deputy Scale</h2>
+      <p class="lede reveal reveal-d3" style="margin-top:10px; color:var(--c-accent-deep); font-style:italic;">A familiar method, professionally scaled.</p>
+      <p class="body reveal reveal-d4" style="max-width:60ch; margin-top:22px;">It starts with what already works in the room. Nothing about the clinical process changes — only how reliably it reaches the client between sessions. What follows on the next few pages is the detail of how that happens, step by step, without adding new tools to the psychologist's day.</p>
+    </div>
+  </section>
+
+  <!-- 5 · A METHOD MANY PSYCHOLOGISTS ALREADY KNOW -->
+  <section class="slide" data-slide="4" data-label="Working method" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Scale</span>
+      <h2 class="display small reveal reveal-d2">A method many psychologists already know</h2>
+      <p class="body reveal reveal-d3" style="max-width:62ch; margin-top:18px;">The psychologist creates a therapeutic protocol or exercise, and makes it available to the client as audio content. This is the same practice many psychologists already follow informally — recording a guided exercise, a breathing sequence, or a reflection prompt for a client to use between sessions. Deputy simply gives that habit a consistent, professional home. Nothing about the underlying clinical content needs to change to make use of it.</p>
+      <div class="gap-callout reveal reveal-d4" style="max-width:760px; margin-top:26px; font-style:italic;">Deputy Scale does not change the therapeutic logic — it professionalises and simplifies how it is delivered.</div>
+    </div>
+  </section>
+
+  <!-- 6 · COMMUNICATION STAYS ONE-WAY -->
+  <section class="slide" data-slide="5" data-label="One-way" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Scale</span>
+      <h2 class="display small reveal reveal-d2">Communication stays deliberately one-way</h2>
+      <div class="flow-row reveal reveal-d3" style="max-width:760px;">
+        <div class="flow-box">Psychologist</div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box">Protocol</div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box">Client</div>
+      </div>
+      <p class="body reveal reveal-d4" style="max-width:64ch; margin-top:28px;">No AI-based interaction with the client takes place at this level. The client listens, reflects, and works with the material in their own time. There is no branching logic, no automated follow-up question, and no system response to interpret — what the psychologist recorded is exactly what the client receives.</p>
+    </div>
+  </section>
+
+  <!-- 7 · WHAT DEPUTY TAKES CARE OF -->
+  <section class="slide" data-slide="6" data-label="What Deputy handles" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Scale</span>
+      <h2 class="display small reveal reveal-d2">What Deputy takes care of</h2>
+      <p class="lede reveal reveal-d3" style="margin-top:10px; color:var(--c-accent-deep); font-style:italic; font-size:15px;">Everything after the recording is handled by the platform, so the psychologist's only task is the clinical one.</p>
+      <div class="num-list reveal reveal-d4">
+        <div class="num-item"><span class="num-badge">1</span><span class="txt">Preparing the therapeutic protocol</span></div>
+        <div class="num-item"><span class="num-badge">2</span><span class="txt">Professional voice recording</span></div>
+        <div class="num-item"><span class="num-badge">3</span><span class="txt">Structured delivery within the Deputy platform</span></div>
+        <div class="num-item"><span class="num-badge">4</span><span class="txt">A consistent, high-quality presentation for the client</span></div>
+        <div class="num-item"><span class="num-badge">5</span><span class="txt">Simple assignment and distribution of content</span></div>
+      </div>
+      <p class="body reveal reveal-d5" style="max-width:64ch; margin-top:20px; font-size:13.5px; color:var(--c-muted);">Each of these steps would otherwise require separate tools, separate logins, or separate habits — Deputy folds them into one straightforward process the psychologist sets up once.</p>
+    </div>
+  </section>
+
+  <!-- 8 · NO INFRASTRUCTURE -->
+  <section class="slide" data-slide="7" data-label="No infrastructure" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Scale</span>
+      <h2 class="display small reveal reveal-d2">No infrastructure to build</h2>
+      <p class="body reveal reveal-d3" style="margin-top:14px;">The psychologist doesn't need to:</p>
+      <div class="x-cards reveal reveal-d4">
+        <div class="x-card"><div class="x-mark">&#215;</div><p>Set up their own audio infrastructure</p></div>
+        <div class="x-card"><div class="x-mark">&#215;</div><p>Send files manually</p></div>
+        <div class="x-card"><div class="x-mark">&#215;</div><p>Combine several different technical tools</p></div>
+      </div>
+      <p class="body reveal reveal-d5" style="max-width:66ch; margin-top:24px; font-size:13.5px; color:var(--c-muted);">All of this sits behind a single interface the psychologist already knows from creating the protocol. There is nothing further to install, configure, or maintain — the technical side of delivery becomes invisible, freeing attention for the clinical work itself.</p>
+    </div>
+  </section>
+
+  <!-- 9 · SCALE SUMMARY -->
+  <section class="slide" data-slide="8" data-label="Scale summary" style="background:var(--c-accent-soft,#EAF0EF);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1" style="color:var(--c-accent-deep);">Deputy Scale</span>
+      <h2 class="display reveal reveal-d2" style="margin-top:10px; font-size:clamp(28px,3.6vw,40px);">A familiar method, professionally scaled.</h2>
+      <p class="body reveal reveal-d3" style="max-width:64ch; margin-top:20px; font-size:16px;">It asks nothing new of the psychologist's clinical practice. It only removes the friction between having a good exercise and getting it reliably into a client's hands. Everything else — recording, structure, presentation, delivery — is handled quietly in the background.</p>
+    </div>
+  </section>
+
+  <!-- 10 · SECTION DIVIDER B -->
+  <section class="slide" data-slide="9" data-label="Section B" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <div class="reveal reveal-d1" style="font-family:var(--font-display); font-weight:700; font-size:clamp(80px,11vw,150px); color:var(--c-accent); line-height:1;">B</div>
+      <h2 class="display reveal reveal-d2" style="margin-top:8px; font-size:clamp(28px,3.8vw,40px);">Deputy Interactive Scale</h2>
+      <p class="lede reveal reveal-d3" style="margin-top:10px; color:var(--c-accent-deep); font-style:italic;">Therapeutic delegation within a defined framework.</p>
+      <p class="body reveal reveal-d4" style="max-width:60ch; margin-top:22px;">Where Deputy Scale ends, Deputy Interactive Scale begins. It keeps everything defined in Deputy Scale, and adds a layer of responsiveness on top of it. The next few pages walk through how that responsiveness stays entirely inside the psychologist's own rules.</p>
+    </div>
+  </section>
+
+  <!-- 11 · THE INTERACTIVE EVOLUTION -->
+  <section class="slide" data-slide="10" data-label="Interactive evolution" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Interactive Scale</span>
+      <h2 class="display small reveal reveal-d2">The interactive evolution</h2>
+      <p class="body reveal reveal-d3" style="max-width:60ch; margin-top:18px;">Deputy Interactive Scale is the interactive evolution of Deputy Scale — and corresponds to Deputy's current core product. Where Deputy Scale ends the exchange at delivery, Deputy Interactive Scale keeps it open. The client can respond, and Deputy can respond back — always inside limits the psychologist has already set. It is the same therapeutic origin, simply extended one step further into the client's week.</p>
+      <div class="gap-callout reveal reveal-d4" style="max-width:720px; margin-top:26px; font-style:italic;">The same platform. The same therapeutic origin. A deeper form of engagement.</div>
+    </div>
+  </section>
+
+  <!-- 12 · BEYOND A STATIC PROTOCOL -->
+  <section class="slide" data-slide="11" data-label="Beyond static" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Interactive Scale</span>
+      <h2 class="display small reveal reveal-d2">Beyond a static protocol</h2>
+      <p class="body reveal reveal-d3" style="max-width:66ch; margin-top:20px; font-size:16px;">The client doesn't just receive a static protocol. Within the framework defined by the psychologist, Deputy can respond to input and accompany the therapeutic process interactively between sessions. This does not mean the system improvises. Every possible direction the conversation can take has already been anticipated and approved by the psychologist beforehand, so nothing the client encounters falls outside what was agreed.</p>
+    </div>
+  </section>
+
+  <!-- 13 · THE STRUCTURE EXTENDS -->
+  <section class="slide" data-slide="12" data-label="Structure extends" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Deputy Interactive Scale</span>
+      <h2 class="display small reveal reveal-d2">The structure extends</h2>
+      <div class="flow-row reveal reveal-d3">
+        <div class="flow-box">Psychologist</div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box is-accent">Deputy Protocol</div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box is-accent">Interaction with client</div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box">Structured feedback</div>
+      </div>
+      <p class="body reveal reveal-d4" style="max-width:66ch; margin-top:28px; font-size:13.5px; color:var(--c-muted);">Each stage in this chain is visible and auditable. The psychologist can review what was said at any point, and adjust the framework for the next interaction. Nothing moves from one stage to the next without passing through the boundaries the psychologist set at the start — the chain never bypasses their oversight.</p>
+    </div>
+  </section>
+
+  <!-- 14 · PSYCHOLOGIST STILL DEFINES -->
+  <section class="slide" data-slide="13" data-label="Still defines" style="background:var(--c-bg-2);">
+    <div class="wrap wide">
+      <span class="kicker reveal reveal-d1">Deputy Interactive Scale</span>
+      <h2 class="display small reveal reveal-d2">The psychologist still defines</h2>
+      <p class="lede reveal reveal-d3" style="margin-top:10px; color:var(--c-accent-deep); font-style:italic; font-size:15px;">Interactivity does not mean the psychologist hands over control — it means the control is defined once, clearly, in advance.</p>
+      <div class="def-cards reveal reveal-d4">
+        <div class="def-card"><h4>Method &amp; framework</h4><p>The therapeutic method and framework the protocol operates within.</p></div>
+        <div class="def-card"><h4>Language &amp; tone</h4><p>How Deputy speaks — in the psychologist's own voice and register.</p></div>
+        <div class="def-card"><h4>Permitted interventions</h4><p>Exactly which responses and interventions Deputy is allowed to use.</p></div>
+        <div class="def-card"><h4>Boundaries &amp; rules</h4><p>The limits and rules the system may never cross.</p></div>
+      </div>
+      <p class="body reveal reveal-d5" style="max-width:68ch; margin-top:22px; font-size:13.5px; color:var(--c-muted);">These four boundaries are set before a single client interaction happens, and can be revised by the psychologist at any time as their confidence with the platform grows.</p>
+    </div>
+  </section>
+
+  <!-- 15 · INTERACTIVE SCALE SUMMARY -->
+  <section class="slide" data-slide="14" data-label="Interactive summary" style="background:var(--c-accent-soft,#EAF0EF);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1" style="color:var(--c-accent-deep);">Deputy Interactive Scale</span>
+      <p class="body reveal reveal-d2" style="max-width:66ch; margin-top:16px; font-size:18px; color:var(--c-muted);">Not just digital delivery of content — the interactive extension of the psychologist between sessions.</p>
+      <h2 class="display reveal reveal-d3" style="margin-top:18px; font-size:clamp(24px,3.2vw,32px);">Deputy Interactive Scale = therapeutic delegation within a defined framework.</h2>
+      <p class="body reveal reveal-d4" style="max-width:62ch; margin-top:22px; font-size:14px; color:var(--c-muted);">The psychologist is still the one who decides what is said, and where the line sits. Deputy simply carries that decision into moments the psychologist cannot personally attend — without ever acting outside it.</p>
+    </div>
+  </section>
+
+  <!-- 16 · COMPARISON (pricing-style cards) -->
+  <section class="slide" data-slide="15" data-label="Side by side" style="background:var(--c-bg);">
+    <div class="wrap wide">
+      <span class="kicker reveal reveal-d1">Side by side</span>
+      <h2 class="display small reveal reveal-d2">Deputy Scale vs. Deputy Interactive Scale</h2>
+      <div class="pricing-wrap reveal reveal-d3">
+        <div class="pricing-card">
+          <span class="pc-label">Deputy Scale</span>
+          <div class="pricing-row"><span class="pr-key">DIRECTION</span><span class="pr-val">One-way</span></div>
+          <div class="pricing-row"><span class="pr-key">CONTENT</span><span class="pr-val">Audio protocol</span></div>
+          <div class="pricing-row"><span class="pr-key">AI INTERACTION</span><span class="pr-val">None</span></div>
+          <div class="pricing-row"><span class="pr-key">CLIENT EXPERIENCE</span><span class="pr-val">Listens &amp; follows</span></div>
+          <div class="pricing-row"><span class="pr-key">WHAT IT IS</span><span class="pr-val">A familiar method, scaled</span></div>
+        </div>
+        <div class="pricing-card is-upgrade">
+          <span class="pc-label">Deputy Interactive Scale</span>
+          <div class="pricing-row"><span class="pr-key">DIRECTION</span><span class="pr-val">Two-way, within limits</span></div>
+          <div class="pricing-row"><span class="pr-key">CONTENT</span><span class="pr-val">Interactive protocol</span></div>
+          <div class="pricing-row"><span class="pr-key">AI INTERACTION</span><span class="pr-val">Yes — inside your boundaries</span></div>
+          <div class="pricing-row"><span class="pr-key">CLIENT EXPERIENCE</span><span class="pr-val">Responds &amp; is accompanied</span></div>
+          <div class="pricing-row"><span class="pr-key">WHAT IT IS</span><span class="pr-val">Therapeutic delegation</span></div>
+        </div>
+      </div>
+      <p class="body reveal reveal-d4" style="max-width:76ch; margin-top:26px; font-size:13px; color:var(--c-muted);">Both cards describe the same psychologist, the same method, and the same client — only the depth of contact between sessions differs. Moving from left to right never means starting over.</p>
+    </div>
+  </section>
+
+  <!-- 17 · SECTION: STRATEGIC LOGIC -->
+  <section class="slide" data-slide="16" data-label="Strategic logic" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <h2 class="display reveal reveal-d1" style="font-size:clamp(34px,4.6vw,54px);">Strategic Logic</h2>
+      <p class="lede reveal reveal-d2" style="margin-top:12px; color:var(--c-accent-deep); font-style:italic;">Why two levels, not two products.</p>
+      <p class="body reveal reveal-d3" style="max-width:62ch; margin-top:20px;">It is a question of sequencing, not of choosing sides. Most practices will move through both stages as their comfort with the platform grows. What matters is that the starting point costs nothing in clinical integrity, and the next step costs nothing in rework.</p>
+    </div>
+  </section>
+
+  <!-- 18 · TWO ENTRY DEPTHS -->
+  <section class="slide" data-slide="17" data-label="Entry depths" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Strategic logic</span>
+      <h2 class="display small reveal reveal-d2">Two entry depths, not two competing products</h2>
+      <p class="body reveal reveal-d3" style="max-width:66ch; margin-top:18px;">The two variants are not competing products, but two entry depths into the same Deputy platform. A psychologist new to digital delivery can begin with Deputy Scale and feel no disruption to how they already work. There is no obligation to ever move further, and no penalty for staying at this level indefinitely.</p>
+
+      <div class="cards cols-2" style="margin-top:26px; max-width:1000px;">
+        <article class="card reveal reveal-d4" style="background:var(--c-accent-soft,#EAF0EF); border:none;">
+          <span class="card-key">A</span>
+          <p style="margin-top:10px;">Deputy Scale is the entry point.</p>
+        </article>
+        <article class="card reveal reveal-d5" style="background:var(--c-accent-soft,#EAF0EF); border:none;">
+          <span class="card-key">B</span>
+          <p style="margin-top:10px;">Deputy Interactive Scale is where they can grow.</p>
+        </article>
+      </div>
+      <p class="body reveal reveal-d6" style="max-width:66ch; margin-top:20px; font-size:12.5px; color:var(--c-muted);">This sequencing matters because trust in a new tool is built gradually, not assumed. By the time a psychologist considers Deputy Interactive Scale, they already know exactly how their content sounds and behaves on the platform.</p>
+    </div>
+  </section>
+
+  <!-- 19 · PRODUCT PATH -->
+  <section class="slide" data-slide="18" data-label="Product path" style="background:var(--c-bg-2);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">Product path</span>
+      <h2 class="display small reveal reveal-d2">One path: Scale to Interactive Scale</h2>
+      <p class="body reveal reveal-d3" style="max-width:66ch; margin-top:18px;">A psychologist can start with Deputy Scale: existing exercises and protocols are professionally recorded and made available through Deputy. Later, the same content can — if desired — be transformed into an interactive Deputy structure. Nothing already recorded needs to be redone; the same audio protocol becomes the foundation for the interactive version, extended rather than replaced.</p>
+      <div class="flow-row reveal reveal-d4" style="max-width:760px; margin-top:32px;">
+        <div class="flow-box" style="color:var(--c-accent-deep);">Deputy Scale</div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box is-accent">Deputy Interactive Scale</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 · CLOSING -->
+  <section class="slide" data-slide="19" data-label="Closing" style="background:var(--c-bg);">
+    <div class="wrap">
+      <span class="kicker reveal reveal-d1">DEPUTY</span>
+      <h2 class="display reveal reveal-d2" style="margin-top:14px; font-size:clamp(30px,4vw,44px);">Two levels. One relationship.</h2>
+      <p class="body reveal reveal-d3" style="max-width:60ch; margin-top:20px; font-size:16px;">Deputy Scale and Deputy Interactive Scale describe the same psychologist, the same clinical judgement, and the same client relationship — only the depth of contact between sessions changes.</p>
+      <p class="body reveal reveal-d4" style="max-width:60ch; margin-top:16px; font-size:14px; color:var(--c-muted);">Wherever a psychologist starts, nothing about their method is replaced. The platform is designed to fit around clinical practice as it already exists, and to grow only as far as each psychologist chooses to take it.</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader-mark">Deputy</div>
+  <div class="loader-bar"><span></span></div>
+  <div class="loader-sub">Loading</div>
+</div>
+
+</body>
+</html>
